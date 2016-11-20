@@ -13,7 +13,11 @@ module.exports = function(selector) {
             }
         }
 
-        var positionTop = this.list[selector].parent.position().top + this.list[selector].parent.outerHeight();
+        if(this.list[selector].parent.position()) {
+            var positionTop = this.list[selector].parent.position().top + this.list[selector].parent.outerHeight();
+        }
+        else
+            return false;
 
         if(document.body.scrollTop <= positionTop) {
             $(selector).css({

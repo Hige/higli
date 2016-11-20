@@ -1,2 +1,7 @@
 zip/
 dist/
+app/css/
+app/js/
+app/fonts/
+app/*.html
+app/css/stylesheets.min.css

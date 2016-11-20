@@ -86,6 +86,15 @@ header {
   position: relative;
 }
 
+#old-browser-warn {
+  display: none;
+  background: #FFF227;
+  padding: 8px 0 10px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+}
+
 .pads {
   position: absolute;
   z-index: 110;
