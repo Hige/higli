@@ -1,0 +1,347 @@
+body {
+  .fi-icon:before {
+    line-height: 0;
+  }
+}
+
+$colorTopBar: #bb54ae;
+$borderTopBar: 0.20em;
+
+div.bg {
+  width: 100%;
+  position: fixed;
+  height: 100%;
+  //background-image: url(../img/bg/patt/pattern15.jpg);
+  //background-image: url(../img/bg/patt/adorable-anime-girl-anime.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top left;
+  background-attachment: fixed;
+  //opacity: .9;
+  z-index: -1;
+}
+.v4-tease {
+  display: block;
+  padding: 15px 20px;
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+  border: 0;
+  margin: 0;
+  //background-color: #228bf2;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#2696ff+0,1b6dba+100 */
+
+  &.blue {
+    @include top-bar-color-gradient(#2696ff, #1b6dba);
+  }
+  &.violet {
+    @include top-bar-color-gradient(#563d7c, #6f5499);
+  }
+}
+header {
+  //opacity: 0.9;
+}
+
+@include top-bar-design;
+
+.top-bar.bigger .page-phone {
+  #phone {
+    position: relative;
+    z-index: 2;
+    @include top-bar-color-gradient(#EFCC1C, #f19029);
+    &:hover {
+      background-position: 0 0;
+    }
+    padding: 0.4em 0.5em;
+    //top: 0;
+    //margin-bottom: -1em;
+    height: 3.19rem;
+    bottom: -0.19em;
+    margin-top: -0.19em;
+    color: #ffffff;
+    text-shadow: 3px 2px 2px rgba(143, 81, 0, 0.4);
+    font-family: BlinkMacSystemFont;
+    text-align: center;
+    div {
+      font-weight: 600;
+      font-size: 1.1em;
+      span {
+        line-height: 1.6em;
+        font-size: 0.8em;
+        font-weight: 400;
+        font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;
+        &:after,
+        &:before {
+          display: none;
+        }
+      }
+    }
+  }
+  &:after {
+    @include top-bar-color-gradient(#EFCC1C, #f19029);
+  }
+}
+
+.c-inner {
+  position: relative;
+}
+
+.pads {
+  position: absolute;
+  z-index: 110;
+  width: 100%;
+  height: 100%;
+}
+
+.pads .pad {
+  position: absolute;
+  -webkit-animation-name: pad;
+  animation-name: pad;
+  -webkit-animation-duration: 6s;
+  animation-duration: 6s;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+.pads .pad img {
+  height: auto;
+}
+
+.ie .pads .pad img {
+  height: 100%;
+}
+
+.section-visual .name {
+  position: absolute;
+  right: 103px;
+  top: 134px;
+  z-index: 110;
+}
+
+.section-visual .banner {
+  position: relative;
+  z-index: 110;
+  margin-top: 60px;
+  text-align: center;
+}
+
+.section-visual .lead {
+  margin-top: 50px;
+  text-align: center;
+}
+
+.section-visual .inyan-carousel {
+  position: relative;
+  height: 705px;
+}
+
+.section-visual .inyan-carousel .display {
+  position: relative;
+  z-index: 110;
+  text-align: center;
+}
+
+.section-visual .inyan-carousel .display .item {
+  float: left;
+}
+
+.section-visual .inyan-carousel .display .item img {
+  margin-left: 95px;
+}
+
+.section-visual .inyan-carousel .nav {
+  position: absolute;
+  right: 60px;
+  bottom: 0;
+  z-index: 130;
+}
+
+.section-visual .inyan-carousel .nav .dialog {
+  position: absolute;
+  left: 50%;
+  z-index: 120;
+  display: block;
+  width: 160px;
+  height: 121px;
+  background: url("../images/visual/nav_dialog.svg") right bottom no-repeat;
+  margin-left: -80px;
+  bottom: 122px;
+}
+
+.section-visual .inyan-carousel .nav .dialog_on {
+  display: none;
+  position: absolute;
+  left: 50%;
+  z-index: 120;
+  width: 228px;
+  height: 84px;
+  background: url("../images/visual/nav_dialog_on.svg") right bottom no-repeat;
+  margin-left: -114px;
+  bottom: 94px;
+}
+
+.section-visual .inyan-carousel .nav .button {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 110;
+  display: block;
+  background: url("../images/visual/nav_button.svg") right bottom no-repeat;
+  width: 181px;
+  height: 129px;
+  background-size: 181px auto;
+  transition: none;
+}
+
+.section-visual .inyan-carousel .nav .link {
+  position: relative;
+  display: block;
+  width: 181px;
+  height: 240px;
+}
+
+.section-visual .inyan-carousel .nav .link:hover {
+  opacity: 1;
+}
+
+.section-visual .inyan-carousel .nav .link:hover .button {
+  background-image: url("../images/visual/nav_button_over.svg");
+}
+
+.section-visual .inyan-carousel .nav .link.is-active .button {
+  background-image: url("../images/visual/nav_button_on.svg");
+}
+
+.section-visual .inyan-carousel .nav .link.is-active .dialog {
+  display: none;
+}
+
+.section-visual .inyan-carousel .nav .link.is-active .dialog_on {
+  display: block;
+}
+
+.section-visual .inyan-carousel .slick-prev {
+  display: none !important;
+}
+
+.section-visual .pads01 {
+  left: 25px;
+  top: 340px;
+}
+
+.section-visual .pads01 .pad01 {
+  top: 0;
+  left: 26px;
+  -webkit-animation-delay: 5.5s;
+  animation-delay: 5.5s;
+}
+
+.section-visual .pads01 .pad02 {
+  top: 25px;
+  left: 60px;
+  -webkit-animation-delay: 4s;
+  animation-delay: 4s;
+}
+
+.section-visual .pads01 .pad03 {
+  top: 71px;
+  left: 29px;
+  -webkit-animation-delay: 2.5s;
+  animation-delay: 2.5s;
+}
+
+.section-visual .pads01 .pad04 {
+  top: 117px;
+  left: 0;
+  -webkit-animation-delay: 1s;
+  animation-delay: 1s;
+}
+
+.section-visual .pads02 {
+  left: 820px;
+  top: 0;
+}
+
+.section-visual .pads02 .pad01 {
+  top: 0;
+  left: 58px;
+  -webkit-animation-delay: 6.5s;
+  animation-delay: 6.5s;
+}
+
+.section-visual .pads02 .pad02 {
+  top: 24px;
+  left: 0;
+  -webkit-animation-delay: 5s;
+  animation-delay: 5s;
+}
+
+.section-visual .pads02 .pad03 {
+  top: 71px;
+  left: 42px;
+  -webkit-animation-delay: 3.5s;
+  animation-delay: 3.5s;
+}
+
+.section-visual .pads02 .pad04 {
+  top: 117px;
+  left: 98px;
+  -webkit-animation-delay: 2s;
+  animation-delay: 2s;
+}
+
+@-webkit-keyframes pad {
+  0% {
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 0;
+  }
+
+  11% {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 1;
+  }
+
+  91% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes pad {
+  0% {
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 0;
+  }
+
+  11% {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 1;
+  }
+
+  91% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}

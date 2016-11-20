@@ -1,0 +1,252 @@
+@mixin top-bar-color-gradient(
+  $bg1: #000,
+  $bg2: #000
+) {
+  background: $bg1; /* Old browsers */
+  background: -moz-linear-gradient(top, $bg1 0%, $bg2 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, $bg1 0%, $bg2 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, $bg1 0%, $bg2 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$bg1', endColorstr='$bg2', GradientType=0); /* IE6-9 */
+  background-size: auto 200%;
+  background-position: 0 100%;
+  //transition: background-position .5s;
+  background-repeat: no-repeat;
+}
+
+@mixin top-bar-color-light-lilac {
+  &,
+  ul li {
+    @include top-bar-delimiter-color(#7168AD/0.4, #221F35/0.7);
+    &,
+    & .menu-text,
+    & a {
+      @include top-bar-color-gradient(#7168AD, #221F35);
+    }
+  }
+  ul li {
+    &.active a,
+    &:hover,
+    &:hover .menu-text,
+    &:hover a {
+      background-position: 0 0;
+    }
+  }
+}
+@mixin top-bar-logo-color(
+  $color: #E88BD3 // #e9afdd
+) {
+  &.logo {
+    .second-word {
+      color: $color;
+    }
+  }
+}
+@mixin top-bar-delimiter-color(
+  $bg1: #e3eaed,
+  $bg2: #c6ccce
+) {
+  &:before,
+  &:after {
+    @include top-bar-color-gradient($bg1, $bg2);
+  }
+}
+@mixin top-bar-color-silver-bar {
+  &.page-catalog .top-bar.silver-bar li.page-catalog,
+  &.page-sale .top-bar.silver-bar li.page-sale,
+  &.page-new-shipment .top-bar.silver-bar li.page-new-shipment,
+  &.page-pre-order .top-bar.silver-bar li.page-pre-order,
+  &.page-rent .top-bar.silver-bar li.page-rent {
+    &,
+    .menu-text,
+    a {
+      background-position: 0 0;
+    }
+  }
+
+  & .top-bar.silver-bar {
+    &,
+    ul li {
+      @include top-bar-delimiter-color(#e3eaed, #c6ccce/1.16);
+      &,
+      & .menu-text,
+      & a {
+        @include top-bar-color-gradient(#F4F4F4, #dddddd/1.05);
+      }
+    }
+
+    ul li {
+      &.active a,
+      &:hover,
+      &:hover .menu-text,
+      &:hover a {
+        background-position: 0 0;
+      }
+    }
+  }
+}
+
+@mixin top-bar-header-color(
+  $bg1: #bb54ae,
+  $bg2: $bg1 / 2
+) {
+  .menu-text,
+  a {
+    color: $bg1;
+  }
+  span:first-child {
+    &:before {
+      background: $bg1; /* Old browsers */
+      background: -moz-linear-gradient(top, $bg1 0%, $bg2 100%); /* FF3.6-15 */
+      background: -webkit-linear-gradient(top, $bg1 0%, $bg2 100%); /* Chrome10-25,Safari5.1-6 */
+      background: linear-gradient(to bottom, $bg1 0%, $bg2 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$bg1', endColorstr='$bg2', GradientType=0); /* IE6-9 */
+    }
+  }
+}
+@mixin top-bar-footer-color(
+  $colorTopBar: #000
+) {
+  .menu-text,
+  a {
+    &:hover {
+      color: $colorTopBar;
+    }
+  }
+  span:first-child {
+    &:after {
+      background: $colorTopBar;
+    }
+  }
+}
+
+
+$tbc-page-default: #415671 !default;
+$tbc-page-catalog: #F98F3E !default;
+$tbc-page-sale: #cc6699 !default;
+$tbc-page-new-shipment: #da4151 !default;
+$tbc-page-pre-order: #5BB299 !default;
+$tbc-page-rent: #53A4BC !default;
+
+@-webkit-keyframes rainbow {
+  0% {opacity: 1}
+  50% {opacity: 0.5}
+  100% {opacity: 1}
+}
+
+@mixin top-bar-colors {
+  &.page-catalog li.page-catalog,
+  &.page-sale li.page-sale,
+  &.page-new-shipment li.page-new-shipment,
+  &.page-pre-order li.page-pre-order,
+  &.page-rent li.page-rent{
+    span:first-child {
+      &:after {
+        -webkit-animation: rainbow 5s linear 5s infinite;
+      }
+    }
+  }
+
+  &.page-catalog .top-bar li.page-catalog {
+    @include top-bar-header-color($tbc-page-catalog);
+  }
+  &.page-sale .top-bar li.page-sale {
+    @include top-bar-header-color($tbc-page-sale);
+  }
+  &.page-new-shipment .top-bar li.page-new-shipment {
+    @include top-bar-header-color($tbc-page-new-shipment);
+  }
+  &.page-pre-order .top-bar li.page-pre-order {
+    @include top-bar-header-color($tbc-page-pre-order);
+  }
+  &.page-rent .top-bar li.page-rent {
+    @include top-bar-header-color($tbc-page-rent);
+  }
+
+  @include top-bar-color-silver-bar;
+
+  & {
+    .top-bar {
+      li,
+      .menu-text,
+      a {
+        color: #424953;
+      }
+      li:hover,
+      .menu-text:hover,
+      a:hover {
+        color: #599ad6;
+      }
+      border-bottom-color: $tbc-page-default;
+    }
+  }
+  &.page-catalog {
+    .top-bar {
+      border-bottom-color: $tbc-page-catalog;
+    }
+  }
+  &.page-sale {
+    .top-bar {
+      border-bottom-color: $tbc-page-sale;
+    }
+  }
+  &.page-new-shipment {
+    .top-bar {
+      border-bottom-color: $tbc-page-new-shipment;
+    }
+  }
+  &.page-pre-order {
+    .top-bar {
+      border-bottom-color: $tbc-page-pre-order;
+    }
+  }
+  &.page-rent {
+    .top-bar {
+      border-bottom-color: $tbc-page-rent;
+    }
+  }
+
+  .top-bar {
+
+    // main them
+    &.light-lilac {
+      overflow: hidden;
+    }
+    &.light-lilac,
+    &.light-lilac li {
+      &,
+      .menu-text,
+      a {
+        color: white;
+      }
+      @include top-bar-color-light-lilac;
+    }
+
+    ul {
+      li {
+        @include top-bar-logo-color;
+        &,
+        .menu-text,
+        a {
+          transition: all 0.5s ease;
+        }
+        &.page-catalog {
+          @include top-bar-footer-color($tbc-page-catalog);
+        }
+        &.page-sale {
+          @include top-bar-footer-color($tbc-page-sale);
+        }
+        &.page-new-shipment {
+          @include top-bar-footer-color($tbc-page-new-shipment);
+        }
+        &.page-pre-order {
+          @include top-bar-footer-color($tbc-page-pre-order);
+        }
+        &.page-rent {
+          @include top-bar-footer-color($tbc-page-rent);
+        }
+      }
+    }
+  }
+}
+
+

@@ -1,0 +1,225 @@
+@import "colors/top-bar";
+
+$colorTopBar: #bb54ae !default;
+$borderTopBar: 0.26rem !default;
+$bsh: none;
+
+
+@mixin top-bar-size(
+  $bbw: 0,
+  $bbs: none,
+  $bsh: none,
+  $fs: rem-calc(13),
+  $ulapadding: 0.8rem 1rem
+) {
+
+    padding: 0;
+    border-bottom-width: $bbw;
+    border-bottom-style: $bbs;
+    box-shadow: $bsh;
+
+    &,
+    & ul {
+      .menu-text,
+      a {
+        display: block;
+        padding: $ulapadding;
+        font-size: $fs;
+        font-weight: 600;
+      }
+    }
+}
+
+@mixin top-bar-logo {
+  &.logo {
+    img {
+      position: absolute;
+      height: 3em;
+      top: -2.5em;
+      left: .6em;
+    }
+    .second-word {
+      display: inline;
+      float: right;
+      padding-left: 0.1em;
+    }
+    a {
+      position: relative;
+      z-index: 100;
+    }
+  }
+}
+
+@mixin top-bar-delimiter(
+  $height: 1.8rem
+) {
+  position: relative;
+
+  &:before {
+    left: -0.09em;
+    visibility: hidden;
+  }
+
+  &:before,
+  &:after {
+    display: block;
+    content: "";
+    position: absolute;
+    height: $height;
+    width: 0.09rem;
+    z-index: 101;
+    transition: all 0.3s ease;
+
+    top: 50%;
+    right: 0;
+    margin-top: -$height/2;
+  }
+
+
+  &.active:before,
+  &.active:after,
+  &:hover:before,
+  &:hover:after {
+    visibility: visible;
+    top: 0;
+    height: 100%;
+    margin: 0;
+  }
+}
+@mixin top-bar-header {
+  span:first-child {
+    position: relative;
+    display: block;
+    content: "";
+    top: 0.3em;
+    z-index: 101;
+  }
+  span:first-child:before {
+    content: "";
+    position: absolute;
+    height:  0.3rem;
+    width: 100%;
+    border-radius: 0.3rem 0.3rem 0 0;
+    margin: -0.6rem 0.09rem 0 0;
+    z-index: 0;
+  }
+  span:first-child:after {
+
+  }
+}
+@mixin top-bar-footer {
+  span:first-child {
+    position: relative;
+    display: block;
+    content: "";
+    top: 0.3em;
+
+    &:after {
+      content: "";
+      position: absolute;
+      top: 3.3rem;
+      height:  0.19rem;
+      width: 100%;
+      margin-top: -0.6rem;
+      z-index: 2;
+    }
+  }
+}
+
+@mixin top-bar-design {
+  .top-bar {
+
+    ul li a i {
+      margin-bottom: 0.2em;
+      vertical-align: middle;
+    }
+    &.small {
+      @include top-bar-size();
+      ul {
+        li {
+          i {
+            line-height: 0;
+            &.nc-icon-glyph,
+            &.outline {
+              font-size: 1em;
+            }
+            &.fi-icon {
+              font-size: 1.5em;
+            }
+          }
+          @include top-bar-delimiter(1rem);
+        }
+      }
+    }
+    &.bigger {
+      @include top-bar-size(
+        $bbw: 0.19rem,
+        $bbs: solid,
+        $bsh: 0 2px 10px rgba($black, 0.2),
+        $fs: rem-calc(15),
+        $ulapadding: 1rem .4rem
+      );
+      .top-bar-right li a {
+        padding: 1rem .8rem;
+      }
+      ul {
+        li {
+          position: relative;
+
+          i {
+            line-height: 0;
+            &.nc-icon-glyph,
+            &.outline {
+              font-size: 1.2em;
+            }
+            &.fi-icon {
+              font-size: 2em;
+            }
+          }
+
+          @include top-bar-logo;
+
+          .menu-text,
+          a {
+            position: relative;
+            text-transform: uppercase;
+            font-weight: 900;
+            z-index: 1;
+          }
+
+          @include top-bar-delimiter(1.8rem);
+          &.page-search {
+            &:after {
+              visibility: hidden;
+            }
+            &:hover:after {
+              visibility: visible;
+            }
+          }
+          @include top-bar-footer;
+        }
+      }
+    }
+  }
+  body {
+    &.page-catalog li.page-catalog,
+    &.page-sale li.page-sale,
+    &.page-new-shipment li.page-new-shipment,
+    &.page-pre-order li.page-pre-order,
+    &.page-rent li.page-rent {
+      @include top-bar-header;
+
+      &:before,
+      &:after,
+      &:hover:before,
+      &:hover:after {
+        visibility: visible;
+        top: 0;
+        height: 100%;
+        margin: 0;
+      }
+    }
+    @include top-bar-colors;
+  }
+}
+
