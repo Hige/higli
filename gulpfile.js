@@ -1,5 +1,7 @@
 "use strict";
 
+// Load method categories.
+var lodash       = require('lodash');
 var runSequence  = require('run-sequence');
 var pjson        = require("./package.json");
 var gulp         = require("gulp");
@@ -26,6 +28,42 @@ var size         = require("gulp-size");
 var realFavicon  = require("gulp-real-favicon");
 
 
+// Функция обработки ошибок
+var handleError = function(err) {
+    gutil.log([(err.name + " in " + err.plugin).bold.red, "", err.message, ""].join("\n"));
+
+    if (gutil.env.beep) {
+        gutil.beep();
+    }
+
+    this.emit("end");
+};
+
+var correctNumber = function correctNumber(number) {
+    return number < 10 ? "0" + number : number;
+};
+
+var getDateTime = function getDateTime() {
+    var now = new Date();
+    var year = now.getFullYear();
+    var month = correctNumber(now.getMonth() + 1);
+    var day = correctNumber(now.getDate());
+    var hours = correctNumber(now.getHours());
+    var minutes = correctNumber(now.getMinutes());
+    return year + "-" + month + "-" + day + "-" + hours + minutes;
+};
+
+var replacePath =  function (path, need, replace) {
+    lodash.forEach(path, function(entry, i) {
+        if(typeof entry === "object") {
+            path[i] = replacePath(entry, need, replace);
+        } else if (typeof entry === "string") {
+            path[i] = entry.replace(need, replace);
+        }
+    });
+
+    return path;
+};
 
 //var $    = require("gulp-load-plugins")();
 //var reload = browserSync.reload;
@@ -131,7 +169,7 @@ var configWebServer = {
         open: true,
         server: {
             directory: false,
-            baseDir: "./app",
+            baseDir: "./app/",
             index: "index.html"
         },
         ghostMode: {
@@ -170,32 +208,6 @@ var configWebServer = {
     callback: function () {
         gulp.start("watch");
     }
-};
-
-
-// Функция обработки ошибок
-var handleError = function(err) {
-    gutil.log([(err.name + " in " + err.plugin).bold.red, "", err.message, ""].join("\n"));
-
-    if (gutil.env.beep) {
-        gutil.beep();
-    }
-
-    this.emit("end");
-};
-
-var correctNumber = function correctNumber(number) {
-    return number < 10 ? "0" + number : number;
-};
-
-var getDateTime = function getDateTime() {
-    var now = new Date();
-    var year = now.getFullYear();
-    var month = correctNumber(now.getMonth() + 1);
-    var day = correctNumber(now.getDate());
-    var hours = correctNumber(now.getHours());
-    var minutes = correctNumber(now.getMinutes());
-    return year + "-" + month + "-" + day + "-" + hours + minutes;
 };
 
 gulp.task("sass", function() {
